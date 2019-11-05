@@ -6,6 +6,8 @@
 import random
 from A1_Q3 import findPrimitiveRoot
 from A1_Q6_DES import encryptDES
+from A1_Q6_DES import decryptDES
+
 
 p = 5711
 g = findPrimitiveRoot(p)
@@ -31,4 +33,5 @@ if __name__ == "__main__":
 
     with open("privatekey.dat", "rb") as readKeyFile:
         val = readKeyFile.read()
-        print(val.decode("utf8"))
+        decrVal = decryptDES(val)
+        print(decrVal.decode("utf8"))

@@ -1,7 +1,8 @@
 import Crypto
 from Crypto.Cipher import DES
 
-password = b'secrpass' 
+password = b'secrpass'
+desLib = DES.new(password, DES.MODE_ECB)
 
 ##--Padding--##
 def pad(item):
@@ -10,6 +11,9 @@ def pad(item):
     return item
 
 def encryptDES(plaintext):
-    desLib = DES.new(password, DES.MODE_ECB)
     paddedItem = pad(plaintext)
     return desLib.encrypt((paddedItem.encode("utf8")))
+
+
+def decryptDES(cipherText):
+    return desLib.decrypt(cipherText)
