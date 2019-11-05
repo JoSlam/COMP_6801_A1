@@ -10,10 +10,6 @@ def pad(item):
     return item
 
 def encryptDES(plaintext):
-    desLib = DES.new(password, 2)
+    desLib = DES.new(password, DES.MODE_ECB)
     paddedItem = pad(plaintext)
-    return desLib.encrypt(paddedItem.encode("utf8"))
-
-if __name__ == "__main__":
-    print(encryptDES("potatoooooooooooooooooooooooooooo"))
-    
+    return desLib.encrypt((paddedItem.encode("utf8")))

@@ -5,6 +5,7 @@
 
 import random
 from A1_Q3 import findPrimitiveRoot
+from A1_Q6_DES import encryptDES
 
 p = 5711
 g = findPrimitiveRoot(p)
@@ -22,4 +23,12 @@ def generatePublic(g, d, p):
 if __name__ == "__main__":
     d = generatePrivate(p)
     e = generatePublic(g, d, p)
-    print("{0} - {1}", e, d)
+
+    privKey = encryptDES(str(d))
+
+    with open("privatekey.dat", "wb") as privKeyFile:
+        privKeyFile.write(privKey)
+
+    with open("privatekey.dat", "rb") as readKeyFile:
+        val = readKeyFile.read()
+        print(val.decode("utf8"))
